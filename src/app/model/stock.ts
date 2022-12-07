@@ -6,6 +6,7 @@ export class Stock {
         ,public code: string
         ,public price: number
         ,public previousPrice: number
+        ,public status: boolean = false
     ){}
 
     isPositiveChange(): boolean{

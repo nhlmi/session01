@@ -1,1 +1,18 @@
-<p>page details</p>
+<!-- <p>page details</p> -->
+
+<div class="stock-container">
+    <div class="name">{{stock.name + ' (' + stock.code + ')'}}</div>
+    <div class="price"
+        [class]="stock.isPositiveChange() ? 'positive' : 'negative'">
+        RM {{stock.price}}
+    </div>
+
+    <button (click)="onToggleFavourite($event)" *ngIf="!stock.favourite">add to favourite</button> 
+    <button (click)="changeStockPrice()">change price 5</button>
+
+    <ng-content></ng-content>
+</div>
+
+
+
+

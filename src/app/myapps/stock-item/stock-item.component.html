@@ -1,15 +1,39 @@
-<div class="stock-container">
-    <div class="name">
-        <h3>{{stock.name}}</h3>-<h4>({{stock.code}})</h4>
-    </div>
+<!-- <div class="stock-container" *ngFor="let stock of stocks; index as i; trackBy: trackStockByCode"> -->
+<div class="stock-container" *ngFor="let stock of stocks; index as i;">
+    <div *ngIf="stock.status">
+        <div class="name">
+            <h3>{{stock.name}}</h3>-<h4>({{stock.code}})</h4>
+        </div>
+    
+        <div class="price">
+            RM {{stock.price}}
+        </div>
 
-    <div class="price">
+        <div class="price" [class]="stock.isPositiveChange() ? 'positive' : 'negative'">
+            RM {{stock.price}}
+        </div>
+
+        <!-- make the btn invisible with *ngIf -->
+        <button (click)="toggleFavourite($event, i)" *ngIf="!stock.favourite">add to favourite</button> 
+
+    </div>
+    
+
+    <!-- <div class="price" [class.positive]="stock.isPositiveChange()" [class.negative]="!stock.isPositiveChange()">
         RM {{stock.price}}
-    </div>
+    </div> -->
 
-    <div class="price" [class]="stock.isPositiveChange ? 'positive' : 'negative'">
+    <!-- <div class="price" [ngStyle]="stockStyles">
         RM {{stock.price}}
-    </div>
+    </div> -->
 
-    <button (click)="toggleFavourite($event)" [disabled]="stock.favourite">add to favourite</button>
+    <!-- <div class="price" [ngClass]="stockClasses">
+        RM {{stock.price}}
+    </div> -->
+
+    <!-- make the btn disabled -->
+    <!-- <button (click)="toggleFavourite($event)" [disabled]="stock.favourite">add to favourite</button> -->
+
+
+
 </div>
